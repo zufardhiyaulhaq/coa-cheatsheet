@@ -3,9 +3,9 @@ COA (Certified OpenStack Administrator) Cheat Sheet
 
 This repository is a note for anyone who want to take COA (Certified OpenStack Administrator).
 
-### Cheat Sheet
+## Cheat Sheet
 
-## Keystone
+### Keystone
 - Create User **johnnyc-cli**
 ```
 openstack user create --domain default --project trade --description "Developer" --email johnnyc@example.com --password openstack johnnyc-cli
