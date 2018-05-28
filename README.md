@@ -69,8 +69,46 @@ Set Quota base on project ID
 Openstack quota set --instances 20 eb1a2580ea87490bbe206162ecf2fde5
 ```
 
+### Glance
+- Create image **cirros-cli** 
+```
+openstack image create --file cirros-0.3.5-x86_64-disk.img --disk-format qcow2 --min-disk 1 --min-ram 512 --property description='Cirros Cloud Image for COA Exam Prep' cirros-cli
+```
 
+- Download image **cirros-cli**
+```
+openstack image save --file /tmp/mydownloadedimage.img cirros-cli
+```
 
+- Share **cirros-cli** with **marketing** project
+```
+openstack image add project cirros-cli 99a06694e4444e038d632aca0cc1a89e
+```
+**99a06694e4444e038d632aca0cc1a89e** is marketing project ID.
 
+### Nova
+- Create Flavor **awesome-flavor-cli**
+```
+openstack flavor create --id 200 --vcpus 1 --ram 512 --disk 1 "awesome-flavor-cli"
+```
+
+- Launch instance **instance3-cli**
+```
+openstack server create --image cirros --flavor m1.tiny --key-name my-new-keypair-cli instance3-cli
+```
+
+- Create snapshot from **instance3-cli**
+```
+openstack server image create --name instance3-cli-snapshot instance3-cli
+```
+**Note** : Shutdown instance first!
+
+- Start/Stop/Suspend/Resume Instance **instance3-cli**
+```
+nova stop instance3-cli
+nova start instance3-cli
+nova suspend instance3-cli
+nova resume instance3-cli
+```
 
 
