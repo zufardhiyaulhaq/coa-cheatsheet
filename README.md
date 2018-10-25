@@ -111,4 +111,47 @@ nova suspend instance3-cli
 nova resume instance3-cli
 ```
 
+### Neutron
+- Membuat Network Private
+```
+openstack network create tenant-network1-cli
+openstack subnet create --network tenant-network1-cli --subnet-range  192.168.1.0/24 tenant-subnet1-cli
+```
+
+- Membuat Network Provider
+```
+openstack network create --provider-physical-network public-cli --provider-network-type flat provider-network-cli --external
+openstack subnet create --network provider-network-cli --subnet-range 172.16.1.0/24 --gateway 172.16.1.1 --no-dhcp provider-subnet-cli
+```
+
+- Membuat security group
+```
+openstack security group create webserver-sg-cli
+```
+
+- Membuat rule security group
+```
+openstack security group rule create --protocol tcp --ingress --dst-port 22 --src-ip 0.0.0.0/0 webserver-sg-cli
+```
+
+- Membuat router dan assign network private
+```
+openstack router create router-cli
+openstack router add subnet router-cli tenant-subnet1-cli
+```
+
+- Assign network provider ke router
+```
+neutron router-gateway-set router-cli provider-network-cli
+```
+
+- Create floating ip
+```
+openstack floating ip create --floating-ip-address 172.16.1.100 provider-network-cli
+```
+
+- Assign floating ip
+```
+openstack server add floating ip instance1-cli 172.16.1.100
+```
 
