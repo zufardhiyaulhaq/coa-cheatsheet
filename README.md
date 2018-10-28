@@ -155,3 +155,41 @@ openstack floating ip create --floating-ip-address 172.16.1.100 provider-network
 openstack server add floating ip instance1-cli 172.16.1.100
 ```
 
+### Cinder
+
+- Membuat volume
+```
+openstack volume create --size 1 volume-cli --description "COA exam prep cli volume"
+```
+
+- Manage Volume
+```
+Sudo -i
+Fdisk -l
+Fdisk /dev/vdb
+Mkfs.ext3 /dev/vdb1
+Df -h
+Mount /dev/vdb1 /mnt
+Umount /dev/vdb1 /mnt
+```
+
+- Attach volume volume-cli ke instance instance-cli
+```
+openstack server add volume instance-cli volume-cli
+```
+
+- Membuat snapshot volume volume-cli
+```
+openstack snapshot create --name volume-snapshot-cli volume-cli
+```
+
+- Create volume dari snapshot
+```
+openstack volume create --snapshot volume-snapshot-cli --size 1 restored-snapshot-volume-cli
+```
+
+- Backup volume volume-cli ke container
+```
+openstack volume backup create --name volume-backup-cli --description "COA exam prep dashboard volume backup" --container volume-backup-
+container-cli volume-cli
+```
