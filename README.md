@@ -110,10 +110,66 @@ nova start instance3-cli
 nova suspend instance3-cli
 nova resume instance3-cli
 ```
+Membuat container
+swift post container-cli
 
-### Neutron
-- Membuat Network Private
-```
+Mengupload file kedalam container
+swift upload container-cli object-cli.txt
+
+Delete file dalam container
+swift delete container-cli object-cli.txt
+
+Expired object
+swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
+
+X-Delete-At : mengeset waktu didelet
+X-Delete-After : setelah xx waktu, delete!
+X-Remove-Delete-At remove header delete-at
+Membuat container
+swift post container-cli
+
+Mengupload file kedalam container
+swift upload container-cli object-cli.txt
+
+Delete file dalam container
+swift delete container-cli object-cli.txt
+
+Expired object
+swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
+
+X-Delete-At : mengeset waktu didelet
+X-Delete-After : setelah xx waktu, delete!
+X-Remove-Delete-At remove header delete-at
+Membuat container
+swift post container-cli
+
+Mengupload file kedalam container
+swift upload container-cli object-cli.txt
+
+Delete file dalam container
+swift delete container-cli object-cli.txt
+
+Expired object
+swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
+
+X-Delete-At : mengeset waktu didelet
+X-Delete-After : setelah xx waktu, delete!
+X-Remove-Delete-At remove header delete-at
+Membuat container
+swift post container-cli
+
+Mengupload file kedalam container
+swift upload container-cli object-cli.txt
+
+Delete file dalam container
+swift delete container-cli object-cli.txt
+
+Expired object
+swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
+
+X-Delete-At : mengeset waktu didelet
+X-Delete-After : setelah xx waktu, delete!
+X-Remove-Delete-At remove header delete-at
 openstack network create tenant-network1-cli
 openstack subnet create --network tenant-network1-cli --subnet-range  192.168.1.0/24 tenant-subnet1-cli
 ```
@@ -156,7 +212,6 @@ openstack server add floating ip instance1-cli 172.16.1.100
 ```
 
 ### Cinder
-
 - Membuat volume
 ```
 openstack volume create --size 1 volume-cli --description "COA exam prep cli volume"
@@ -192,4 +247,29 @@ openstack volume create --snapshot volume-snapshot-cli --size 1 restored-snapsho
 ```
 openstack volume backup create --name volume-backup-cli --description "COA exam prep dashboard volume backup" --container volume-backup-
 container-cli volume-cli
+```
+
+### Swift
+- Membuat container
+```
+swift post container-cli
+```
+
+- Mengupload file kedalam container
+```
+swift upload container-cli object-cli.txt
+```
+
+- Delete file dalam container
+```
+swift delete container-cli object-cli.txt
+```
+
+- Expired object
+```
+swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
+
+X-Delete-At : mengeset waktu didelet
+X-Delete-After : setelah xx waktu, delete!
+X-Remove-Delete-At remove header delete-at
 ```
