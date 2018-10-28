@@ -110,66 +110,10 @@ nova start instance3-cli
 nova suspend instance3-cli
 nova resume instance3-cli
 ```
-Membuat container
-swift post container-cli
 
-Mengupload file kedalam container
-swift upload container-cli object-cli.txt
-
-Delete file dalam container
-swift delete container-cli object-cli.txt
-
-Expired object
-swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
-
-X-Delete-At : mengeset waktu didelet
-X-Delete-After : setelah xx waktu, delete!
-X-Remove-Delete-At remove header delete-at
-Membuat container
-swift post container-cli
-
-Mengupload file kedalam container
-swift upload container-cli object-cli.txt
-
-Delete file dalam container
-swift delete container-cli object-cli.txt
-
-Expired object
-swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
-
-X-Delete-At : mengeset waktu didelet
-X-Delete-After : setelah xx waktu, delete!
-X-Remove-Delete-At remove header delete-at
-Membuat container
-swift post container-cli
-
-Mengupload file kedalam container
-swift upload container-cli object-cli.txt
-
-Delete file dalam container
-swift delete container-cli object-cli.txt
-
-Expired object
-swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
-
-X-Delete-At : mengeset waktu didelet
-X-Delete-After : setelah xx waktu, delete!
-X-Remove-Delete-At remove header delete-at
-Membuat container
-swift post container-cli
-
-Mengupload file kedalam container
-swift upload container-cli object-cli.txt
-
-Delete file dalam container
-swift delete container-cli object-cli.txt
-
-Expired object
-swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
-
-X-Delete-At : mengeset waktu didelet
-X-Delete-After : setelah xx waktu, delete!
-X-Remove-Delete-At remove header delete-at
+### Neutron
+- Membuat Network Private
+```
 openstack network create tenant-network1-cli
 openstack subnet create --network tenant-network1-cli --subnet-range  192.168.1.0/24 tenant-subnet1-cli
 ```
@@ -272,4 +216,22 @@ swift post container-cli object-cli.txt -H "X-Delete-At:1535792954"
 X-Delete-At : mengeset waktu didelet
 X-Delete-After : setelah xx waktu, delete!
 X-Remove-Delete-At remove header delete-at
+```
+
+### Heat
+- Membuat stack stack-cli
+```
+openstack stack create -t test-stack.yaml --parameter Flavor=m1.tiny --parameter Image=<image-uuid> --parameter Net=<network-uuid> --parameter
+ServerName=stackserver-cli --parameter VolumeName=stackvolume-cli stack-cli
+```
+
+- Update stack dengan menganti serverName
+```
+openstack stack update --existing --parameter
+ServerName=stackserverupdate-cli stack-cli
+```
+
+- Delete stack
+```
+Openstack stack delete <stack-name>
 ```
